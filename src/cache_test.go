@@ -74,7 +74,7 @@ func TestCacheEvictsExpiredItems(t *testing.T) {
 	cache := NewCache(2)
 	cache.Set("key1", "value1", 1*time.Second)
 	time.Sleep(2 * time.Second)
-	cache.evictExpiredItems()
+	cache.cleanupExpired()
 	_, found := cache.Get("key1")
 	if found {
 		t.Errorf("Get() = %v, want %v", found, false)
